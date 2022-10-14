@@ -17,12 +17,12 @@ class Customer:
         return self.name
 
     def statement(self) -> str:
-        total_amount: float = 0.0
         result: str = "Rental Record for " + self.name + "\n"
         for each in self.rentals:
             # show figure for this rental
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(self.__amount_for(each)) + "\n"
+        total_amount: float = 0.0
         for each in self.rentals:
             total_amount += self.__amount_for(each)
         # add footer lines result
