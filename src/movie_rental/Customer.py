@@ -18,14 +18,18 @@ class Customer:
 
     def statement(self) -> str:
         result: str = "Rental Record for " + self.name + "\n"
-        for each in self.rentals:
-            # show figure for this rental
-            result += "\t" + each.get_movie().get_title() + "\t" + \
-                      str(self.__amount_for(each)) + "\n"
+        result = self.__body_formatter(result)
         # add footer lines result
         result += "Amount owed is " + str(self.__total_amount()) + "\n"
         result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
+        return result
+
+    def __body_formatter(self, result):
+        for each in self.rentals:
+            # show figure for this rental
+            result += "\t" + each.get_movie().get_title() + "\t" + \
+                      str(self.__amount_for(each)) + "\n"
         return result
 
     def __total_amount(self):
