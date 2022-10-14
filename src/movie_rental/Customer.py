@@ -61,9 +61,10 @@ class Customer:
         return frequent_renter_points
 
     def html_statement(self):
+        body: str = ""
+        for rental in self.rentals:
+            body += f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
         return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
-           " movie-1 14.0</br>" \
-           " movie-2 12.5</br>" \
-           " movie-3 30</br>" \
-           f"Amount owed is <b>{self.__total_amount()}</b></br>" \
-           f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
+               + body + \
+               f"Amount owed is <b>{self.__total_amount()}</b></br>" \
+               f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
