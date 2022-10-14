@@ -34,7 +34,7 @@ class Customer:
             total_amount += self.__amount_for(each)
         return total_amount
 
-    def __amount_for(self, rental):
+    def __amount_for(self, rental: Rental) -> float:
         this_amount: float = 0
         match rental.get_movie().get_price_code():
             case Movie.REGULAR:
@@ -49,7 +49,7 @@ class Customer:
                     this_amount += (rental.get_days_rented() - 3) * 1.5
         return this_amount
 
-    def __frequent_renter_points(self):
+    def __frequent_renter_points(self) -> float:
         frequent_renter_points: int = 0
         for each in self.rentals:
             # add frequent renter points
@@ -60,7 +60,7 @@ class Customer:
                 frequent_renter_points += 1
         return frequent_renter_points
 
-    def html_statement(self):
+    def html_statement(self) -> str:
         body: str = ""
         for rental in self.rentals:
             body += f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
