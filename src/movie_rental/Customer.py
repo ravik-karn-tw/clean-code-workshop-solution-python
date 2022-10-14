@@ -19,7 +19,7 @@ class Customer:
     def statement(self) -> str:
         total_amount: float = 0.0
         frequent_renter_points: int = 0
-        result: str = "Rental Record for " + self.get_name() + "\n"
+        result: str = "Rental Record for " + self.name + "\n"
         for each in self.rentals:
             this_amount: float = 0
             # determine amounts for each line
@@ -51,7 +51,7 @@ class Customer:
         return result
 
     def html_statement(self):
-        return f"<html><h1>Rental Record for <b>{self.get_name()}</b></h1></br>" \
+        return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
            " movie-1 14.0</br>" \
            " movie-2 12.5</br>" \
            " movie-3 30</br>" \
