@@ -34,19 +34,19 @@ class Customer:
             total_amount += self.__amount_for(each)
         return total_amount
 
-    def __amount_for(self, each):
+    def __amount_for(self, rental):
         this_amount: float = 0
-        match each.get_movie().get_price_code():
+        match rental.get_movie().get_price_code():
             case Movie.REGULAR:
                 this_amount += 2
-                if each.get_days_rented() > 2:
-                    this_amount += (each.get_days_rented() - 2) * 1.5
+                if rental.get_days_rented() > 2:
+                    this_amount += (rental.get_days_rented() - 2) * 1.5
             case Movie.NEW_RELEASE:
-                this_amount += each.get_days_rented() * 3
+                this_amount += rental.get_days_rented() * 3
             case Movie.CHILDRENS:
                 this_amount += 2
-                if each.get_days_rented() > 3:
-                    this_amount += (each.get_days_rented() - 3) * 1.5
+                if rental.get_days_rented() > 3:
+                    this_amount += (rental.get_days_rented() - 3) * 1.5
         return this_amount
 
     def __frequent_renter_points(self):
