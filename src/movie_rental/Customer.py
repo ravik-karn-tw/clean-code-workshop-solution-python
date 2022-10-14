@@ -22,9 +22,8 @@ class Customer:
             # show figure for this rental
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(self.__amount_for(each)) + "\n"
-        total_amount = self.__total_amount()
         # add footer lines result
-        result += "Amount owed is " + str(total_amount) + "\n"
+        result += "Amount owed is " + str(self.__total_amount()) + "\n"
         result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
         return result
