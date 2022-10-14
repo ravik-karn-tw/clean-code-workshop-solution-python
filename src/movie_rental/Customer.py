@@ -23,6 +23,7 @@ class Customer:
             # show figure for this rental
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(self.__amount_for(each)) + "\n"
+        for each in self.rentals:
             total_amount += self.__amount_for(each)
         # add footer lines result
         result += "Amount owed is " + str(total_amount) + "\n"
