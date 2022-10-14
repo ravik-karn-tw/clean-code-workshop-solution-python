@@ -26,6 +26,15 @@ class Customer:
                   " frequent renter points"
         return result
 
+    def html_statement(self) -> str:
+        body: str = ""
+        for rental in self.rentals:
+            body += f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
+        return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
+               + body + \
+               f"Amount owed is <b>{self.__total_amount()}</b></br>" \
+               f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
+
     def __body_formatter(self, formatter) -> str:
         result: str = ""
         for rental in self.rentals:
@@ -63,12 +72,3 @@ class Customer:
                     (each.get_days_rented() > 1):
                 frequent_renter_points += 1
         return frequent_renter_points
-
-    def html_statement(self) -> str:
-        body: str = ""
-        for rental in self.rentals:
-            body += f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
-        return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
-               + body + \
-               f"Amount owed is <b>{self.__total_amount()}</b></br>" \
-               f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
