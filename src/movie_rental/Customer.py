@@ -27,14 +27,13 @@ class Customer:
 
     def __body_formatter(self):
         result: str = ""
-        for each in self.rentals:
-            # show figure for this rental
-            result += self.formatter(each)
+        for rental in self.rentals:
+            result += self.formatter(rental)
         return result
 
-    def formatter(self, each):
-        return "\t" + each.get_movie().get_title() + "\t" + \
-               str(self.__amount_for(each)) + "\n"
+    def formatter(self, rental):
+        return "\t" + rental.get_movie().get_title() + "\t" + \
+               str(self.__amount_for(rental)) + "\n"
 
     def __total_amount(self):
         total_amount: float = 0.0
