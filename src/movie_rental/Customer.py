@@ -18,7 +18,6 @@ class Customer:
 
     def statement(self) -> str:
         total_amount: float = 0.0
-        frequent_renter_points: int = 0
         result: str = "Rental Record for " + self.name + "\n"
         for each in self.rentals:
             this_amount: float = 0
@@ -38,6 +37,15 @@ class Customer:
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(this_amount) + "\n"
             total_amount += this_amount
+        frequent_renter_points = self.__frequent_renter_points()
+        # add footer lines result
+        result += "Amount owed is " + str(total_amount) + "\n"
+        result += "You earned " + str(frequent_renter_points) + \
+                  " frequent renter points"
+        return result
+
+    def __frequent_renter_points(self):
+        frequent_renter_points: int = 0
         for each in self.rentals:
             # add frequent renter points
             frequent_renter_points += 1
@@ -45,11 +53,7 @@ class Customer:
             if (each.get_movie().get_price_code() == Movie.NEW_RELEASE) and \
                     (each.get_days_rented() > 1):
                 frequent_renter_points += 1
-        # add footer lines result
-        result += "Amount owed is " + str(total_amount) + "\n"
-        result += "You earned " + str(frequent_renter_points) + \
-                  " frequent renter points"
-        return result
+        return frequent_renter_points
 
     def html_statement(self):
         return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
