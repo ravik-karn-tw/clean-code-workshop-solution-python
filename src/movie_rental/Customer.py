@@ -61,4 +61,4 @@ class Customer:
            " movie-2 12.5</br>" \
            " movie-3 30</br>" \
            "Amount owed is <b>56.5</b></br>" \
-           "You earned <b>4</b> frequent renter points</html>"
+           f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
