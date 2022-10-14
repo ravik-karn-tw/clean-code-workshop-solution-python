@@ -22,14 +22,18 @@ class Customer:
             # show figure for this rental
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(self.__amount_for(each)) + "\n"
-        total_amount: float = 0.0
-        for each in self.rentals:
-            total_amount += self.__amount_for(each)
+        total_amount = self.__total_amount()
         # add footer lines result
         result += "Amount owed is " + str(total_amount) + "\n"
         result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
         return result
+
+    def __total_amount(self):
+        total_amount: float = 0.0
+        for each in self.rentals:
+            total_amount += self.__amount_for(each)
+        return total_amount
 
     def __amount_for(self, each):
         this_amount: float = 0
