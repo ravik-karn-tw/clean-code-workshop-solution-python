@@ -37,10 +37,9 @@ class Customer:
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(this_amount) + "\n"
             total_amount += this_amount
-        frequent_renter_points = self.__frequent_renter_points()
         # add footer lines result
         result += "Amount owed is " + str(total_amount) + "\n"
-        result += "You earned " + str(frequent_renter_points) + \
+        result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
         return result
 
