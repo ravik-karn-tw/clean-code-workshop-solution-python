@@ -66,5 +66,5 @@ class Customer:
            " movie-1 14.0</br>" \
            " movie-2 12.5</br>" \
            " movie-3 30</br>" \
-           "Amount owed is <b>56.5</b></br>" \
+           f"Amount owed is <b>{self.__total_amount()}</b></br>" \
            f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
