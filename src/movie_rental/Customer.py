@@ -20,11 +20,10 @@ class Customer:
         total_amount: float = 0.0
         result: str = "Rental Record for " + self.name + "\n"
         for each in self.rentals:
-            this_amount = self.__amount_for(each)
             # show figure for this rental
             result += "\t" + each.get_movie().get_title() + "\t" + \
-                      str(this_amount) + "\n"
-            total_amount += this_amount
+                      str(self.__amount_for(each)) + "\n"
+            total_amount += self.__amount_for(each)
         # add footer lines result
         result += "Amount owed is " + str(total_amount) + "\n"
         result += "You earned " + str(self.__frequent_renter_points()) + \
