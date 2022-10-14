@@ -20,19 +20,7 @@ class Customer:
         total_amount: float = 0.0
         result: str = "Rental Record for " + self.name + "\n"
         for each in self.rentals:
-            this_amount: float = 0
-            # determine amounts for each line
-            match each.get_movie().get_price_code():
-                case Movie.REGULAR:
-                    this_amount += 2
-                    if each.get_days_rented() > 2:
-                        this_amount += (each.get_days_rented() - 2) * 1.5
-                case Movie.NEW_RELEASE:
-                    this_amount += each.get_days_rented() * 3
-                case Movie.CHILDRENS:
-                    this_amount += 2
-                    if each.get_days_rented() > 3:
-                        this_amount += (each.get_days_rented() - 3) * 1.5
+            this_amount = self.__amount_for(each)
             # show figure for this rental
             result += "\t" + each.get_movie().get_title() + "\t" + \
                       str(this_amount) + "\n"
@@ -42,6 +30,21 @@ class Customer:
         result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
         return result
+
+    def __amount_for(self, each):
+        this_amount: float = 0
+        match each.get_movie().get_price_code():
+            case Movie.REGULAR:
+                this_amount += 2
+                if each.get_days_rented() > 2:
+                    this_amount += (each.get_days_rented() - 2) * 1.5
+            case Movie.NEW_RELEASE:
+                this_amount += each.get_days_rented() * 3
+            case Movie.CHILDRENS:
+                this_amount += 2
+                if each.get_days_rented() > 3:
+                    this_amount += (each.get_days_rented() - 3) * 1.5
+        return this_amount
 
     def __frequent_renter_points(self):
         frequent_renter_points: int = 0
