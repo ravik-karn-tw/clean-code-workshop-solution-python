@@ -27,9 +27,8 @@ class Customer:
         return result
 
     def html_statement(self) -> str:
-        body: str = ""
-        for rental in self.rentals:
-            body += f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
+        body: str = self.__body_formatter(
+            lambda rental: f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>")
         return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
                + body + \
                f"Amount owed is <b>{self.__total_amount()}</b></br>" \
