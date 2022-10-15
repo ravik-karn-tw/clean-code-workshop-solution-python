@@ -1,7 +1,7 @@
 class Statement:
-    def generate_statement(self, customer_name, rentals, total_amount, frequent_renter_points):
-        return self.__header(customer_name) + self.__body(rentals) + self.__footer(total_amount,
-                                                                                   frequent_renter_points)
+    def generate_statement(self, customer_name, rentals):
+        return self.__header(customer_name) + self.__body(rentals) + self.__footer(rentals.total_amount(),
+                                                                                   rentals.frequent_renter_points())
 
     def __header(self, customer_name) -> str:
         return "Rental Record for " + customer_name + "\n"

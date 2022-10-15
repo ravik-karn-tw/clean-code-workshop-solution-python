@@ -1,7 +1,7 @@
 class HTMLStatement:
-    def generate(self, customer_name, rentals, total_amount, frequent_renter_points):
-        return self.__header(customer_name) + self.__body(rentals) + self.__footer(total_amount,
-                                                                                   frequent_renter_points)
+    def generate(self, customer_name, rentals):
+        return self.__header(customer_name) + self.__body(rentals) + self.__footer(rentals.total_amount(),
+                                                                                   rentals.frequent_renter_points())
 
     def __header(self, customer_name) -> str:
         return f"<html><h1>Rental Record for <b>{customer_name}</b></h1></br>"
