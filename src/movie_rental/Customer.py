@@ -1,4 +1,4 @@
-from src.movie_rental.HTMLStatement import html_header, html_body
+from src.movie_rental.HTMLStatement import html_header, html_body, html_footer
 from src.movie_rental.Movie import Movie
 from src.movie_rental.Rental import Rental
 
@@ -33,12 +33,8 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return html_header(self.name) + html_body(self.rentals) + self.__html_footer(self.__total_amount(),
-                                                                                     self.__frequent_renter_points())
-
-    def __html_footer(self, total_amount, frequent_renter_points) -> str:
-        return f"Amount owed is <b>{total_amount}</b></br>" \
-               f"You earned <b>{frequent_renter_points}</b> frequent renter points</html>"
+        return html_header(self.name) + html_body(self.rentals) + html_footer(self.__total_amount(),
+                                                                              self.__frequent_renter_points())
 
     def __body_formatter(self, formatter) -> str:
         result: str = ""
