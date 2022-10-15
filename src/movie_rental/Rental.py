@@ -1,7 +1,4 @@
-from src.movie_rental.ChildrenPriceCode import ChildrenPriceCode
 from src.movie_rental.Movie import Movie
-from src.movie_rental.NewReleasePriceCode import NewReleasePriceCode
-from src.movie_rental.RegularPriceCode import RegularPriceCode
 
 
 class Rental:
