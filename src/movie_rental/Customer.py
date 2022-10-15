@@ -33,8 +33,12 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return html_header(self.name) + html_body(self.rentals) + html_footer(self.__total_amount(),
-                                                                              self.__frequent_renter_points())
+        return self.generate_html_statement(self.name, self.rentals, self.__total_amount(),
+                                            self.__frequent_renter_points())
+
+    def generate_html_statement(self, customer_name, rentals, total_amount, frequent_renter_points):
+        return html_header(customer_name) + html_body(rentals) + html_footer(total_amount,
+                                                                             frequent_renter_points)
 
     def __body_formatter(self, formatter) -> str:
         result: str = ""
