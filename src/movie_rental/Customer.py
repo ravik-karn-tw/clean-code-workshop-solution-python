@@ -17,10 +17,19 @@ class Customer:
         return self.name
 
     def statement(self) -> str:
-        result: str = "Rental Record for " + self.name + "\n"
-        result += self.__body_formatter(lambda rental: "\t" + rental.get_movie().get_title() + "\t" + \
-                                                       str(self.__amount_for(rental)) + "\n")
-        # add footer lines result
+        result: str = self.__header()
+        result += self.__body_formatter(self.__body_line())
+        result = self.__footer(result)
+        return result
+
+    def __header(self):
+        return "Rental Record for " + self.name + "\n"
+
+    def __body_line(self):
+        return lambda rental: "\t" + rental.get_movie().get_title() + "\t" + \
+                              str(self.__amount_for(rental)) + "\n"
+
+    def __footer(self, result):
         result += "Amount owed is " + str(self.__total_amount()) + "\n"
         result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
@@ -28,10 +37,17 @@ class Customer:
 
     def html_statement(self) -> str:
         body: str = self.__body_formatter(
-            lambda rental: f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>")
-        return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>" \
-               + body + \
-               f"Amount owed is <b>{self.__total_amount()}</b></br>" \
+            self.__html_body_line())
+        return self.__html_header() + body + self.__html_footer()
+
+    def __html_header(self):
+        return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>"
+
+    def __html_body_line(self):
+        return lambda rental: f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
+
+    def __html_footer(self):
+        return f"Amount owed is <b>{self.__total_amount()}</b></br>" \
                f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
 
     def __body_formatter(self, formatter) -> str:
