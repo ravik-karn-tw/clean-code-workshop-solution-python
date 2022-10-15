@@ -19,7 +19,7 @@ class Customer:
     def statement(self) -> str:
         result: str = self.__header()
         result += self.__body_formatter(self.__body_line())
-        result = self.__footer(result)
+        result += self.__footer()
         return result
 
     def __header(self):
@@ -29,8 +29,8 @@ class Customer:
         return lambda rental: "\t" + rental.get_movie().get_title() + "\t" + \
                               str(self.__amount_for(rental)) + "\n"
 
-    def __footer(self, result):
-        result += "Amount owed is " + str(self.__total_amount()) + "\n"
+    def __footer(self):
+        result = "Amount owed is " + str(self.__total_amount()) + "\n"
         result += "You earned " + str(self.__frequent_renter_points()) + \
                   " frequent renter points"
         return result
