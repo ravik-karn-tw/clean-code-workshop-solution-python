@@ -1,3 +1,4 @@
+from src.movie_rental.HTMLStatement import html_header
 from src.movie_rental.Movie import Movie
 from src.movie_rental.Rental import Rental
 
@@ -32,10 +33,7 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return self.html_header(self.name) + self.__html_body() + self.__html_footer()
-
-    def html_header(self, customer_name) -> str:
-        return f"<html><h1>Rental Record for <b>{customer_name}</b></h1></br>"
+        return html_header(self.name) + self.__html_body() + self.__html_footer()
 
     def __html_body(self) -> str:
         return self.__body_formatter(
