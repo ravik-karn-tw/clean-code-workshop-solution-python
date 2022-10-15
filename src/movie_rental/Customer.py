@@ -17,10 +17,13 @@ class Customer:
         return self.name
 
     def statement(self) -> str:
-        return self.__header() + self.__body_formatter(self.__body_line()) + self.__footer()
+        return self.__header() + self.__body() + self.__footer()
 
     def __header(self):
         return "Rental Record for " + self.name + "\n"
+
+    def __body(self):
+        return self.__body_formatter(self.__body_line())
 
     def __body_line(self):
         return lambda rental: "\t" + rental.get_movie().get_title() + "\t" + \
@@ -33,10 +36,13 @@ class Customer:
         return result
 
     def html_statement(self) -> str:
-        return self.__html_header() + self.__body_formatter(self.__html_body_line()) + self.__html_footer()
+        return self.__html_header() + self.__html_body() + self.__html_footer()
 
     def __html_header(self):
         return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>"
+
+    def __html_body(self):
+        return self.__body_formatter(self.__html_body_line())
 
     def __html_body_line(self):
         return lambda rental: f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>"
