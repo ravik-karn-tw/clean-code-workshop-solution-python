@@ -8,7 +8,7 @@ class Statement:
 
     def __body(self, rentals) -> str:
         return self.__body_formatter(lambda rental: "\t" + rental.get_movie().get_title() + "\t" + \
-                                                    str(rental.amount_for()) + "\n", rentals)
+                                                    str(rental.amount()) + "\n", rentals)
 
     def __footer(self, total_amount, frequent_renter_points) -> str:
         return "Amount owed is " + str(total_amount) + "\n" + "You earned " + str(

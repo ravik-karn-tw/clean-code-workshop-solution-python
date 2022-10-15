@@ -8,7 +8,7 @@ class HTMLStatement:
 
     def __body(self, rentals) -> str:
         return self.__body_formatter(
-            lambda rental: f" {rental.get_movie().get_title()} {rental.amount_for()}</br>", rentals)
+            lambda rental: f" {rental.get_movie().get_title()} {rental.amount()}</br>", rentals)
 
     def __body_formatter(self, formatter, rentals) -> str:
         result: str = ""

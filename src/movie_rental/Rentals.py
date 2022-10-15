@@ -6,7 +6,7 @@ class Rentals(list[Rental]):
     def total_amount(self) -> float:
         total_amount: float = 0.0
         for each in self:
-            total_amount += each.amount_for()
+            total_amount += each.amount()
         return total_amount
 
     def frequent_renter_points(self) -> float:
