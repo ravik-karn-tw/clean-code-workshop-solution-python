@@ -16,4 +16,4 @@ class Rental:
         return self.movie
 
     def amount_for(self) -> float:
-        return self.get_movie().get_price_code_object().amount(self.days_rented)
+        return self.movie.get_price_code_object().amount(self.days_rented)
