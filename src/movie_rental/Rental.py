@@ -19,12 +19,4 @@ class Rental:
         return self.movie
 
     def amount_for(self) -> float:
-        this_amount: float = 0
-        match self.get_movie().get_price_code():
-            case Movie.REGULAR:
-                this_amount = RegularPriceCode().amount(self.days_rented)
-            case Movie.NEW_RELEASE:
-                this_amount = NewReleasePriceCode().amount(self.days_rented)
-            case Movie.CHILDRENS:
-                this_amount = ChildrenPriceCode().amount(self.days_rented)
-        return this_amount
+        return self.get_movie().get_price_code_object().amount(self.days_rented)
