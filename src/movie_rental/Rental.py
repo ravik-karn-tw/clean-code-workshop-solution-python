@@ -1,3 +1,4 @@
+from src.movie_rental.ChildrenPriceCode import ChildrenPriceCode
 from src.movie_rental.Movie import Movie
 from src.movie_rental.NewReleasePriceCode import NewReleasePriceCode
 from src.movie_rental.RegularPriceCode import RegularPriceCode
@@ -25,7 +26,5 @@ class Rental:
             case Movie.NEW_RELEASE:
                 this_amount = NewReleasePriceCode().amount(self.get_days_rented())
             case Movie.CHILDRENS:
-                this_amount += 2
-                if self.get_days_rented() > 3:
-                    this_amount += (self.get_days_rented() - 3) * 1.5
+                this_amount = ChildrenPriceCode().amount(self.get_days_rented())
         return this_amount
