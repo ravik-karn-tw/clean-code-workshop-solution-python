@@ -36,9 +36,7 @@ class Customer:
         return result
 
     def html_statement(self) -> str:
-        body: str = self.__body_formatter(
-            self.__html_body_line())
-        return self.__html_header() + body + self.__html_footer()
+        return self.__html_header() + self.__body_formatter(self.__html_body_line()) + self.__html_footer()
 
     def __html_header(self):
         return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>"
