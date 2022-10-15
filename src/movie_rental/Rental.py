@@ -22,9 +22,9 @@ class Rental:
         this_amount: float = 0
         match self.get_movie().get_price_code():
             case Movie.REGULAR:
-                this_amount = RegularPriceCode().amount(self.get_days_rented())
+                this_amount = RegularPriceCode().amount(self.days_rented)
             case Movie.NEW_RELEASE:
-                this_amount = NewReleasePriceCode().amount(self.get_days_rented())
+                this_amount = NewReleasePriceCode().amount(self.days_rented)
             case Movie.CHILDRENS:
-                this_amount = ChildrenPriceCode().amount(self.get_days_rented())
+                this_amount = ChildrenPriceCode().amount(self.days_rented)
         return this_amount
