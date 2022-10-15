@@ -25,7 +25,7 @@ class Customer:
 
     def __body(self) -> str:
         return self.__body_formatter(lambda rental: "\t" + rental.get_movie().get_title() + "\t" + \
-                                                    str(self.__amount_for(rental)) + "\n")
+                                                    str(rental.amount_for()) + "\n")
 
     def __footer(self) -> str:
         return "Amount owed is " + str(self.__total_amount()) + "\n" + "You earned " + str(
@@ -37,7 +37,7 @@ class Customer:
 
     def __html_body(self) -> str:
         return self.__body_formatter(
-            lambda rental: f" {rental.get_movie().get_title()} {self.__amount_for(rental)}</br>")
+            lambda rental: f" {rental.get_movie().get_title()} {rental.amount_for()}</br>")
 
     def __html_footer(self) -> str:
         return f"Amount owed is <b>{self.__total_amount()}</b></br>" \
@@ -52,23 +52,8 @@ class Customer:
     def __total_amount(self) -> float:
         total_amount: float = 0.0
         for each in self.rentals:
-            total_amount += self.__amount_for(each)
+            total_amount += each.amount_for()
         return total_amount
-
-    def __amount_for(self, rental: Rental) -> float:
-        this_amount: float = 0
-        match rental.get_movie().get_price_code():
-            case Movie.REGULAR:
-                this_amount += 2
-                if rental.get_days_rented() > 2:
-                    this_amount += (rental.get_days_rented() - 2) * 1.5
-            case Movie.NEW_RELEASE:
-                this_amount += rental.get_days_rented() * 3
-            case Movie.CHILDRENS:
-                this_amount += 2
-                if rental.get_days_rented() > 3:
-                    this_amount += (rental.get_days_rented() - 3) * 1.5
-        return this_amount
 
     def __frequent_renter_points(self) -> float:
         frequent_renter_points: int = 0
