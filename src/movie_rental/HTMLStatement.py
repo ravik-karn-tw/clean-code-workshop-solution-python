@@ -17,3 +17,8 @@ def __body_formatter(formatter, rentals) -> str:
 def html_footer(total_amount, frequent_renter_points) -> str:
     return f"Amount owed is <b>{total_amount}</b></br>" \
            f"You earned <b>{frequent_renter_points}</b> frequent renter points</html>"
+
+
+def generate_html_statement(customer_name, rentals, total_amount, frequent_renter_points):
+    return html_header(customer_name) + html_body(rentals) + html_footer(total_amount,
+                                                                         frequent_renter_points)
