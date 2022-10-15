@@ -17,10 +17,7 @@ class Customer:
         return self.name
 
     def statement(self) -> str:
-        result: str = self.__header()
-        result += self.__body_formatter(self.__body_line())
-        result += self.__footer()
-        return result
+        return self.__header() + self.__body_formatter(self.__body_line()) + self.__footer()
 
     def __header(self):
         return "Rental Record for " + self.name + "\n"
