@@ -1,4 +1,5 @@
 from src.movie_rental.Movie import Movie
+from src.movie_rental.RegularPriceCode import RegularPriceCode
 
 
 class Rental:
@@ -19,17 +20,11 @@ class Rental:
         this_amount: float = 0
         match self.get_movie().get_price_code():
             case Movie.REGULAR:
-                this_amount = self.amount_for_regular(self.get_days_rented())
+                this_amount = RegularPriceCode().amount_for_regular(self.get_days_rented())
             case Movie.NEW_RELEASE:
                 this_amount += self.get_days_rented() * 3
             case Movie.CHILDRENS:
                 this_amount += 2
                 if self.get_days_rented() > 3:
                     this_amount += (self.get_days_rented() - 3) * 1.5
-        return this_amount
-
-    def amount_for_regular(self, days_rented):
-        this_amount: float = 2
-        if days_rented > 2:
-            this_amount += (days_rented - 2) * 1.5
         return this_amount
