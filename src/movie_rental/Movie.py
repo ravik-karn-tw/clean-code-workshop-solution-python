@@ -1,4 +1,5 @@
 from src.movie_rental.ChildrenPriceCode import ChildrenPriceCode
+from src.movie_rental.DocumentaryPriceCode import DocumentaryPriceCode
 from src.movie_rental.NewReleasePriceCode import NewReleasePriceCode
 from src.movie_rental.PriceCode import PriceCode
 from src.movie_rental.RegularPriceCode import RegularPriceCode
@@ -8,6 +9,7 @@ class Movie:
     REGULAR: int = 0
     CHILDRENS: int = 1
     NEW_RELEASE: int = 2
+    DOCUMENTARY: int = 3
 
     title: str
     price_code: int
@@ -33,6 +35,8 @@ class Movie:
                 return NewReleasePriceCode()
             case Movie.CHILDRENS:
                 return ChildrenPriceCode()
+            case Movie.DOCUMENTARY:
+                return DocumentaryPriceCode()
 
     def amount(self, days_rented):
         return self.__get_price_code_object().amount(days_rented)
