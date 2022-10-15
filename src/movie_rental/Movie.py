@@ -33,3 +33,7 @@ class Movie:
                 return NewReleasePriceCode()
             case Movie.CHILDRENS:
                 return ChildrenPriceCode()
+
+
+    def amount(self, days_rented):
+        return self.get_price_code_object().amount(days_rented)
