@@ -1,4 +1,4 @@
-from src.movie_rental.HTMLStatement import html_header
+from src.movie_rental.HTMLStatement import html_header, html_body
 from src.movie_rental.Movie import Movie
 from src.movie_rental.Rental import Rental
 
@@ -33,11 +33,7 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return html_header(self.name) + self.__html_body() + self.__html_footer()
-
-    def __html_body(self) -> str:
-        return self.__body_formatter(
-            lambda rental: f" {rental.get_movie().get_title()} {rental.amount_for()}</br>")
+        return html_header(self.name) + html_body(self.rentals) + self.__html_footer()
 
     def __html_footer(self) -> str:
         return f"Amount owed is <b>{self.__total_amount()}</b></br>" \
