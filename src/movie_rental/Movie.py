@@ -25,7 +25,7 @@ class Movie:
     def get_title(self) -> str:
         return self.title
 
-    def get_price_code_object(self) -> PriceCode:
+    def __get_price_code_object(self) -> PriceCode:
         match self.price_code:
             case Movie.REGULAR:
                 return RegularPriceCode()
@@ -34,6 +34,5 @@ class Movie:
             case Movie.CHILDRENS:
                 return ChildrenPriceCode()
 
-
     def amount(self, days_rented):
-        return self.get_price_code_object().amount(days_rented)
+        return self.__get_price_code_object().amount(days_rented)
