@@ -32,10 +32,10 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return self.__html_header() + self.__html_body() + self.__html_footer()
+        return self.html_header(self.name) + self.__html_body() + self.__html_footer()
 
-    def __html_header(self) -> str:
-        return f"<html><h1>Rental Record for <b>{self.name}</b></h1></br>"
+    def html_header(self, customer_name) -> str:
+        return f"<html><h1>Rental Record for <b>{customer_name}</b></h1></br>"
 
     def __html_body(self) -> str:
         return self.__body_formatter(
