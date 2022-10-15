@@ -1,4 +1,4 @@
-from src.movie_rental.HTMLStatement import generate_html_statement
+from src.movie_rental.HTMLStatement import HTMLStatement
 from src.movie_rental.Movie import Movie
 from src.movie_rental.Rental import Rental
 
@@ -33,8 +33,8 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return generate_html_statement(self.name, self.rentals, self.__total_amount(),
-                                       self.__frequent_renter_points())
+        return HTMLStatement().generate_html_statement(self.name, self.rentals, self.__total_amount(),
+                                                       self.__frequent_renter_points())
 
     def __body_formatter(self, formatter) -> str:
         result: str = ""
