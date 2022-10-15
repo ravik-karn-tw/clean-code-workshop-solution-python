@@ -33,11 +33,12 @@ class Customer:
                " frequent renter points"
 
     def html_statement(self) -> str:
-        return html_header(self.name) + html_body(self.rentals) + self.__html_footer()
+        return html_header(self.name) + html_body(self.rentals) + self.__html_footer(self.__total_amount(),
+                                                                                     self.__frequent_renter_points())
 
-    def __html_footer(self) -> str:
-        return f"Amount owed is <b>{self.__total_amount()}</b></br>" \
-               f"You earned <b>{self.__frequent_renter_points()}</b> frequent renter points</html>"
+    def __html_footer(self, total_amount, frequent_renter_points) -> str:
+        return f"Amount owed is <b>{total_amount}</b></br>" \
+               f"You earned <b>{frequent_renter_points}</b> frequent renter points</html>"
 
     def __body_formatter(self, formatter) -> str:
         result: str = ""
